@@ -1,0 +1,21 @@
+version: '3'
+services:
+  squid-proxy:
+    build: ./squid-proxy
+    container_name: squid-proxy
+    networks:
+      - test-net
+
+  ubuntu-client:
+    build: ./ubuntu-client
+    container_name: ubuntu-client
+    networks:
+      - test-net
+    # ports:
+    #   - "3000:3000" O segredo é ue não pode expor a porta 3000.
+    tty: true
+    stdin_open: true
+
+networks:
+  test-net:
+    driver: bridge
